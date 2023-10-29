@@ -12,36 +12,32 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrdinaryPurchaseTest {
-    // public static String url = System.getProperty("sut.url");
+    public static String url = System.getProperty("sut.url");
 
-    //@BeforeEach
-    //  public void openPage() {
-    //  open ("http://localhost:8080");
-    //}
-
-    @BeforeAll
-    static void setUpAll() {
-
-        SelenideLogger.addListener("allure", new AllureSelenide());
-    }
+    /*@BeforeEach
+    public void openPage() {
+        open(url);
+    }*/
 
     @AfterEach
-    public void clearDB() {
-
+    public void cleanBase() {
         SQLHelper.clearDB();
     }
 
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
 
     @AfterAll
     static void tearDownAll() {
-
         SelenideLogger.removeListener("allure");
     }
 
     @Test
     void shouldBuyCardApproved() {
         open("http://localhost:8080");
-        PaymentMethod page = new PaymentMethod();
+        val page = new PaymentMethod();
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getApprovedCard());
         payment.getNotificationApproved();
