@@ -42,28 +42,28 @@ public class OrdinaryPurchase {
     }
 
     public void getNotificationApproved() {
-        approvedOperationNotification.waitUntil(visible,15000);
+        approvedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
     public void getFailedNotification() {
-        failedOperationNotification.waitUntil(visible,15000);
+        failedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
 
 
     public void getNotificationWrongFormat() {
-        wrongFormatErrorNotification.waitUntil(visible,15000);;
+        wrongFormatErrorNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void getNotificationExpirationDateError() {
-        cardExpirationDateError.waitUntil(visible,15000);;
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void getNotificationExpiredError() {
-        cardExpiredDateError.waitUntil(visible,15000);;
+        cardExpiredDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
     public void getNotificationRequiredFieldError() {
-        requiredFieldError.waitUntil(visible,15000);;
+        requiredFieldError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
 }

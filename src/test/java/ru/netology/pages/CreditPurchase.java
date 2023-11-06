@@ -42,26 +42,25 @@ public class CreditPurchase {
         continueButton.click();
     }
 
-    public void ShouldShowNotificationApproved() {
-         approvedOperationNotification.waitUntil(visible,15000);;
-
+    public void getNotificationApproved() {
+         approvedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
 
-    public void waitNotificationFailure() {
-        failedOperationNotification.waitUntil(visible,15000);;
+    public void getFailedNotification() {
+        failedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    public void waitNotificationWrongFormat() {
-        wrongFieldFormatError.waitUntil(visible,15000);;
+    public void getNotificationWrongFormat() {
+        wrongFieldFormatError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    public void waitNotificationExpirationDateError() {
-        wrongExpirationDateError.waitUntil(visible,15000);;
+    public void getNotificationExpirationDateError() {
+        wrongExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    public void waitNotificationExpiredError() {
-        cardExpiredDateError.waitUntil(visible,15000);;
+    public void getNotificationExpiredError() {
+        cardExpiredDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
 }

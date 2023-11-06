@@ -10,14 +10,13 @@ import ru.netology.pages.PaymentMethod;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.netology.data.SQLHelper.url;
 
-public class OrdinaryPurchaseTest {
-   public static String url = System.getProperty("sut.url");
+//public class CreditPurchaseTest {
+    // public static String url = System.getProperty("sut.url");
 
-    @BeforeEach
+    /*@BeforeEach
     public void openPage() {
-        open("http://localhost:8080");
+        open(url);
     }
 
     @AfterEach
@@ -35,21 +34,21 @@ public class OrdinaryPurchaseTest {
         SelenideLogger.removeListener("allure");
     }
 
-   @Test
+    @Test
     void shouldBuyCardApproved() {
-        //open("http://localhost:8080");
+        open("http://localhost:8080");
         val page = new PaymentMethod();
-        val payment = page.goToBuyPage();
+        val payment = page.goToCreditPage();
         payment.inputData(DataHelper.getApprovedCard());
         payment.getNotificationApproved();
         assertEquals("APPROVED", SQLHelper.getPaymentStatus());
     }
-}
-/*
+
+
     @Test
     void shouldNotBuyDeclinedCard() {
         PaymentMethod page = new PaymentMethod();
-        val payment = page.goToBuyPage();
+        val payment = page.goToCreditPage();
         payment.inputData(DataHelper.getDeclinedCard());
         payment.getFailedNotification();
         assertEquals("DECLINED", SQLHelper.getPaymentStatus());
@@ -227,4 +226,5 @@ public class OrdinaryPurchaseTest {
     }
 
 
-    */
+}
+*/
