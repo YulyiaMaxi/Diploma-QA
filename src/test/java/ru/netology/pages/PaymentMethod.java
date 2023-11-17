@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class PaymentMethod {
     private SelenideElement heading = $$("h2").findBy(text("Путешествие дня"));
     private SelenideElement buyButton = $$(".button").findBy(text("Купить"));
-    private SelenideElement creditButton = $$(".button").findBy(text("Купить в кредит"));
+    public final SelenideElement creditButton = $$(".button").findBy(text("Купить в кредит"));
 
     public PaymentMethod() {
 

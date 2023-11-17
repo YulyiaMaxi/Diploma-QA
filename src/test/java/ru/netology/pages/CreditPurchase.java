@@ -14,20 +14,22 @@ import static com.codeborne.selenide.Selenide.$$;
 import static java.time.Duration.*;
 
 public class CreditPurchase {
+
     private SelenideElement heading = $$("h3").find(exactText("Кредит по данным карты"));
-    private SelenideElement cardNumberField = $$(".input__control").findBy(text("Номер карты"));
-    private SelenideElement monthField = $$(".input__control").findBy(text("Месяц"));
-    private SelenideElement yearField = $$(".input__control").findBy(text("Год"));
-    private SelenideElement cardHolderField = $$(".input__control").findBy(text("Владелец"));
-    private SelenideElement cvvField = $$(".input__control").findBy(text("CVC/CVV"));
-    private SelenideElement approvedOperationNotification = $$(".notification__content").findBy(text("Операция одобрена Банком"));
-    private SelenideElement failedOperationNotification = $$(".notification__content").findBy(text("Ошибка! Банк отказал в проведении операции"));
-    private SelenideElement wrongFieldFormatError = $(byText("Неверный формат"));
-    private SelenideElement wrongExpirationDateError = $(byText("Неверно указан срок действия карты"));
+    private SelenideElement cardNumberField = $(byText("Номер карты")).parent().$("[class=\"input__control\"]");
+    private SelenideElement monthField = $(byText("Месяц")).parent().$("[class=\"input__control\"]");
+    private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
+    private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
+    private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
+    public static SelenideElement approvedOperationNotification = $(byText("Операция одобрена Банком.")).parent().$("[class=\"notification__content\"]");
+    public static SelenideElement failedOperationNotification = $(byText("Ошибка! Банк отказал в проведении операции")).parent().$("[class=\"notification__content\"]");
+    private SelenideElement wrongFormatErrorNotification = $(byText("Неверный формат"));
+    private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты"));
     private SelenideElement cardExpiredDateError = $(byText("Истёк срок действия карты"));
     private SelenideElement requiredFieldError = $(byText("Поле обязательно для заполнения"));
-    private SelenideElement continueButton = $$(".button").findBy(text("Продолжить"));
+
     private SelenideElement cancelField = $$("[class=\"icon-button__text\"]").first();
+    private SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
 
     public CreditPurchase() {
         heading.shouldBe(visible);
@@ -42,25 +44,28 @@ public class CreditPurchase {
         continueButton.click();
     }
 
-    public void getNotificationApproved() {
+    public void getApprovedOperationNotification() {
          approvedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
+
 
     public void getFailedNotification() {
         failedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void getNotificationWrongFormat() {
-        wrongFieldFormatError.shouldBe(visible, Duration.ofSeconds(15));
+        wrongFormatErrorNotification.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void getNotificationExpirationDateError() {
-        wrongExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void getNotificationExpiredError() {
         cardExpiredDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
-
+    public void getNotificationRequiredFieldError() {
+        requiredFieldError.shouldBe(visible, Duration.ofSeconds(15));
+    }
 }

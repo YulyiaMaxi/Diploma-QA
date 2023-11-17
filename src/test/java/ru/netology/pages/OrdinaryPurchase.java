@@ -4,6 +4,7 @@ package ru.netology.pages;
         import com.codeborne.selenide.SelenideElement;
         import ru.netology.data.Card;
 
+        import javax.management.Notification;
         import java.time.Duration;
 
         import static com.codeborne.selenide.Condition.*;
@@ -18,8 +19,8 @@ public class OrdinaryPurchase {
     private SelenideElement yearField = $(byText("Год")).parent().$("[class=\"input__control\"]");
     private SelenideElement cardHolderField = $(byText("Владелец")).parent().$("[class=\"input__control\"]");
     private SelenideElement cvvField = $(byText("CVC/CVV")).parent().$("[class=\"input__control\"]");
-    private SelenideElement approvedOperationNotification = $(byText("Операция одобрена Банком.")).parent().$("[class=\"notification__content\"]");
-    private SelenideElement failedOperationNotification = $(byText("Ошибка! Банк отказал в проведении операции")).parent().$("[class=\"notification__content\"]");
+    public static SelenideElement approvedOperationNotification = $(byText("Операция одобрена Банком.")).parent().$("[class=\"notification__content\"]");
+    public static SelenideElement failedOperationNotification = $(byText("Ошибка! Банк отказал в проведении операции")).parent().$("[class=\"notification__content\"]");
     private SelenideElement wrongFormatErrorNotification = $(byText("Неверный формат"));
     private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты"));
     private SelenideElement cardExpiredDateError = $(byText("Истёк срок действия карты"));
@@ -41,8 +42,8 @@ public class OrdinaryPurchase {
         continueButton.click();
     }
 
-    public void getNotificationApproved() {
-        approvedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
+    public void getApprovedOperationNotification() {
+       approvedOperationNotification.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
     public void getFailedNotification() {
