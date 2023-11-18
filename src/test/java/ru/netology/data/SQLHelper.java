@@ -3,20 +3,6 @@ package ru.netology.data;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-import ru.netology.pages.OrdinaryPurchase;
-
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import static java.sql.DriverManager.drivers;
-import static java.sql.DriverManager.getConnection;
-
-
-
-
-import lombok.val;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

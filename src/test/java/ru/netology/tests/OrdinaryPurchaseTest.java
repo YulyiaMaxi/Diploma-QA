@@ -6,26 +6,14 @@ import lombok.val;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
-import ru.netology.data.SQLHelper;
 import ru.netology.pages.PaymentMethod;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.netology.data.SQLHelper.url;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class OrdinaryPurchaseTest {
     public static String url = System.getProperty("sut.url");
-
-
-    @BeforeEach
-    public void openPage() {
-        open("http://localhost:8080");
-    }
-
-    @AfterEach
-    public void cleanBase() {
-        SQLHelper.clearDB();
-    }
 
     @BeforeAll
     static void setUpAll() {
@@ -35,6 +23,16 @@ public class OrdinaryPurchaseTest {
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
+    }
+
+    @BeforeEach
+    public void openPage() {
+        open("http://localhost:8080");
+    }
+
+    @AfterEach
+    public void cleanBase() {
+        SQLHelper.clearDB();
     }
 
     @Test
@@ -64,18 +62,17 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardNumberFieldEmpty());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
 
-
-   @Test
+    @Test
     void shouldNotBuyCardNumberLessThan16Symbols() {
         val page = new PaymentMethod();
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardNumberLessThan16Symbols());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
 
@@ -85,7 +82,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardHolderInCyrillic());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -94,7 +91,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardHolderInOneWord());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -103,7 +100,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardHolderWithSpecialSymbols());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -112,7 +109,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardHolderEmptyField());
         payment.getNotificationRequiredFieldError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -121,7 +118,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardMonthLessThan2Figures());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -130,7 +127,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardMonthEqual00());
         payment.getNotificationExpirationDateError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -139,9 +136,8 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardMonthMoreThan12());
         payment.getNotificationExpirationDateError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
-
 
 
     @Test
@@ -150,7 +146,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardMonthEmptyField());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -177,7 +173,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardCurrentMonthAndYearMinus1Month());
         payment.getNotificationExpirationDateError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -186,7 +182,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardCurrentMonthAndYearMinus1Month());
         payment.getNotificationExpirationDateError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -195,7 +191,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardYearEmptyField());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -204,7 +200,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardYearOnlyOneFigure());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
 
     }
 
@@ -214,7 +210,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardCvv000());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -223,7 +219,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardYearCvvEmptyField());
         payment.getNotificationRequiredFieldError();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 
     @Test
@@ -232,7 +228,7 @@ public class OrdinaryPurchaseTest {
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getCardCvvLessThanThreeFigures());
         payment.getNotificationWrongFormat();
-        assertEquals(null, SQLHelper.getPaymentStatus());
+        assertNull(SQLHelper.getPaymentStatus());
     }
 }
 
