@@ -27,9 +27,8 @@ public class CreditPurchaseTest {
 
     @BeforeEach
     public void openPage() {
-        open("http://localhost:8080");
+        open(url);
     }
-
     @AfterEach
     public void cleanBase() {
         SQLHelper.clearDB();

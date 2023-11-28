@@ -27,7 +27,7 @@ public class OrdinaryPurchaseTest {
 
     @BeforeEach
     public void openPage() {
-        open("http://localhost:8080");
+        open(url);
     }
 
     @AfterEach
@@ -37,7 +37,6 @@ public class OrdinaryPurchaseTest {
 
     @Test
     void shouldBuyCardApproved() {
-        //open("http://localhost:8080");
         val page = new PaymentMethod();
         val payment = page.goToBuyPage();
         payment.inputData(DataHelper.getApprovedCard());
