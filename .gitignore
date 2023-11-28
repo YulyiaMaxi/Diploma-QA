@@ -1,7 +1,8 @@
 .gradle
 build/
+.idea/
 .idea
-.
+
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -29,7 +30,7 @@ gradlew.bat
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-.allure
+.allure/
 
 
 ### NetBeans ###
@@ -44,3 +45,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.idea/
+/.allure/
+
+.allure
