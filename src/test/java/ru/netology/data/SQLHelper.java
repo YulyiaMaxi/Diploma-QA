@@ -17,7 +17,7 @@ public class SQLHelper {
         val cleanOrder = "DELETE FROM order_entity;";
         val cleanPayment = "DELETE FROM payment_entity;";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")) {
+        try (val conn = DriverManager.getConnection(url, user, password))  {
             runner.update(conn, cleanCreditRequest);
             runner.update(conn, cleanOrder);
             runner.update(conn, cleanPayment);
@@ -40,7 +40,7 @@ public class SQLHelper {
         Long count = null;
         val codesSQL = " SELECT COUNT(*) FROM order_entity;";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")) {
+        try (val conn = DriverManager.getConnection(url, user, password))  {
             count = runner.query(conn, codesSQL, new ScalarHandler<>());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class SQLHelper {
     private static String getData(String query) {
         String data = "";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")) {
+        try (val conn = DriverManager.getConnection(url, user, password))  {
             data = runner.query(conn, query, new ScalarHandler<>());
         } catch (SQLException e) {
             e.printStackTrace();
