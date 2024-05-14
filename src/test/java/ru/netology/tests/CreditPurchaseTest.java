@@ -36,7 +36,7 @@ public class CreditPurchaseTest {
 
     @Test
     void shouldBuyCardApproved() {
-        //open("http://localhost:8080");
+        //open("http://localhost:0808");
         val page = new PaymentMethod();
         val payment = page.goToCreditPage();
         payment.inputData(DataHelper.getApprovedCard());
